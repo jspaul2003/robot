@@ -4,11 +4,7 @@ from time import sleep
 #because java is so good:
 true = True
 false = False
-while true: #go on forever
-    e.motor.two.forwards()
-    i = input('big chungus')
-    if i == 'e':
-        break
+
 while True:
     if kb.is_pressed('a'):
         e.motor.one.forwards()
