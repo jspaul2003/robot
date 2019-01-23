@@ -10,7 +10,19 @@ false = False
 while True:
     if kb.is_pressed('esc'):
         break
-    if kb.is_pressed('a'):
+    if kb.is_pressed('w') and kb.is_pressed('a'): #Forward left
+        e.motor.one.forwards(100)
+        e.motor.two.forwards(75);
+    elif kb.is_pressed('w') and kb.is_pressed('d'): #Forward right
+        e.motor.one.forwards(75)
+        e.motor.two.forwards(100);
+    elif kb.is_pressed('s') and kb.is_pressed('a'):
+        e.motor.one.backwards(100)
+        e.motor.two.backwards(75);
+    elif kb.is_pressed('s') and kb.is_pressed('d'):
+        e.motor.one.backwards(75)
+        e.motor.two.backwards(100);   
+    elif kb.is_pressed('a'):
         e.motor.one.forwards(100)
         e.motor.two.stop()
     elif kb.is_pressed('d'):
