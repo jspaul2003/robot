@@ -5,7 +5,7 @@
 Robotics Project at Westminster School using the STS Raspberry Pi Robot with an **emphasis** on memes and jokes
 <br>
 <br>
-Js Paul, Andrew Alan Nist, Alex Koubaa
+Js Paul, Andrew Alam-Nist, Alex Koubaa
 <br>
 <br>
 An Epic Link to the reference: https://github.com/pimoroni/explorer-hat/blob/master/documentation/Function-reference.md
