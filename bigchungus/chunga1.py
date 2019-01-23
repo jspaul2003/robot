@@ -1,3 +1,5 @@
+#RUN THIS: sudo python3 chunga1.py
+
 import explorerhat as e #refers to the explorer hat. we ll be calling it e
 import keyboard as kb
 from time import sleep
@@ -6,10 +8,12 @@ true = True
 false = False
 
 while True:
+    if kb.is_pressed('esc'):
+        break
     if kb.is_pressed('a'):
         e.motor.one.forwards()
-        er.motor.two.stop()
-    elif kb.is_pressed('d')
+        e.motor.two.stop()
+    elif kb.is_pressed('d'):
         e.motor.two.forwards()
         e.motor.one.stop()
     else:
