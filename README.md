@@ -2,7 +2,7 @@
 *Now This is Epic*
 <br>
 <br>
-Robotics Project at Westminster School using the STS Raspberry pi Robot with an **emphasis** on memes and jokes
+Robotics Project at Westminster School using the STS Raspberry Pi Robot with an **emphasis** on memes and jokes
 <br>
 <br>
 Js Paul, Andrew Alan Nist, Alex Koubaa
