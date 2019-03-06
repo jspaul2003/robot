@@ -28,7 +28,28 @@ class TextPrint:
         
     def unindent(self):
         self.x -= 10
-    
+
+def move(LJRL, LJFB):
+    if 0 >= LJRL:
+        direction = 0
+        LJRL = LJRL/-1
+    else:
+        direction = 1
+    speed = LJFB * 100
+    if speed > 0:
+        if direction == 0:
+            e.motor.one.forwards(speed)
+            e.motor.two.forwards(speed/(LJRL*100))
+        else:
+            e.motor.one.forwards(speed/(LJRL*100))
+            e.motor.two.forwards(speed)
+    else:
+        if direction == 0:
+            e.motor.one.forwards(speed)
+            e.motor.two.forwards(speed/(LJRL*100))
+        else:
+            e.motor.one.forwards(speed/(LJRL*100))
+            e.motor.two.forwards(speed)
 
 pygame.init()
  
