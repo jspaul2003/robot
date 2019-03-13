@@ -1,4 +1,5 @@
 import pygame
+import explorerhat as e
 true = True
 false = False
 # Define some colors
@@ -29,27 +30,6 @@ class TextPrint:
     def unindent(self):
         self.x -= 10
 
-def move(LJRL, LJFB):
-    if 0 >= LJRL:
-        direction = 0
-        LJRL = LJRL/-1
-    else:
-        direction = 1
-    speed = LJFB * 100
-    if speed > 0:
-        if direction == 0:
-            e.motor.one.forwards(speed)
-            e.motor.two.forwards(speed/(LJRL*100))
-        else:
-            e.motor.one.forwards(speed/(LJRL*100))
-            e.motor.two.forwards(speed)
-    else:
-        if direction == 0:
-            e.motor.one.forwards(speed)
-            e.motor.two.forwards(speed/(LJRL*100))
-        else:
-            e.motor.one.forwards(speed/(LJRL*100))
-            e.motor.two.forwards(speed)
 
 pygame.init()
  
@@ -119,7 +99,43 @@ while done==False:
             axis = joystick.get_axis( i )
             textPrint.print(screen, "Axis {} value: {:>6.3f}".format(i, axis) )
         textPrint.unindent()
+        
+        ax = joystick.get_axis(1)
+        ax1 = joystick.get_axis(0)
+        if(ax<0):
+            e.motor.one.forward(abs(ax*100))
+            e.motor.two.forward(abs(ax*100))
+        elif(ax>0):
+            e.motor.one.backwards(abs(ax*100))
+            e.motor.two.backwards(abs(ax*100))
+        else:
+            e.motor.one.forward(0)
+            e.motor.two.forward(0)
+        if(ax==0 and ax1<0):
+            e.motor.one.forward(abs(ax1*100))
+            e.motor.two.forward(0)
+        elif(ax==0 and ax1>0):
+            e.motor.one.forward(0)
+            e.motor.two.forward(abs(ax1*100))
+        elif(ax<0 and ax1<0 and abs(ax1)>=0.01):
+            print('f')
+            e.motor.one.forward(abs(ax*100))
+            e.motor.two.forward((abs(ax*100)/(abs(ax1)))/100)
+        elif(ax<0 and ax1>0 and abs(ax1)>=0.01):
+            print('f')
+            e.motor.two.forward(abs(ax*100))
+            e.motor.one.forward((abs(ax*100)/(abs(ax1)))/100)
+        elif(ax>0 and ax1<0 and abs(ax1)>=0.01):
+            print('back')
+            e.motor.one.backwards(abs(ax*100))
+            e.motor.two.backwards((abs(ax*100)/(abs(ax1)))/100)
+        elif(ax>0 and ax1>0 and abs(ax1)>=0.01):
+            print('back')
+            e.motor.two.backwards(abs(ax*100))
+            e.motor.one.backwards((abs(ax*100)/(abs(ax1)))/100)
+            print((abs(ax*100)/(abs(ax1)))/100)
             
+        
         buttons = joystick.get_numbuttons()
         textPrint.print(screen, "Number of buttons: {}".format(buttons) )
         textPrint.indent()
