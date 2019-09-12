@@ -1,4 +1,3 @@
-# P1War5 - Team PiRoclastic
 *Now This is Epic*
 <br>
 <br>
