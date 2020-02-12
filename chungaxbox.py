@@ -10,8 +10,8 @@ import keyboard as kb
 import RPi.GPIO as GPIO
 import gpiozero
 import pygame
-import explorerhat as e
 from time import sleep
+from gpiozero import Motor
 
 #define trues and falses to prevent slip ups from R or java
 T=True
@@ -139,53 +139,54 @@ while done==False:
         ax = joystick.get_axis(1)
         ax1 = joystick.get_axis(0)
         if(ax<0):
-            A1.forward(abs(ax*100))
-            A2.forward(abs(ax*100))
-            B1.backward(abs(ax*100))
-            B2.backward(abs(ax*100))
+            A1.forward(abs(ax))
+            A2.forward(abs(ax))
+            B1.backward(abs(ax))
+            B2.backward(abs(ax))
         elif(ax>0):
-            B1.forward(abs(ax*10))
-            B2.forward(abs(ax*10))
-            A1.backward(abs(ax*10))
-            A2.backward(abs(ax*10))
+            B1.forward(abs(ax))
+            B2.forward(abs(ax))
+            A1.backward(abs(ax))
+            A2.backward(abs(ax))
         else:
-            for i in range(0,4)
-                motors.stop()
+            for i in range(0,4):
+                motors[i].stop()
         if(ax==0 and ax1<0):
-            A1.forward(abs(ax1*10))
+            A1.forward(abs(ax1))
             A2.stop()
             B1.stop()
-            B2.backward(abs(ax1*10))
+            B2.backward(abs(ax1))
         elif(ax==0 and ax1>0):
-            A2.forward(abs(ax1*10))
+            A2.forward(abs(ax1))
             A1.stop()
             B2.stop()
-            B1.backward(abs(ax1*10))
+            B1.backward(abs(ax1))
         elif(ax<0 and ax1<0 and abs(ax1)>=0.01):
             print('f')
-            A1.forward(abs(ax*100))
-            A2.forward((abs(ax*100)/(abs(ax1)))/100)
-            B2.backward(abs(ax*100))
-            B1.backward((abs(ax*100)/(abs(ax1)))/100)
+            A1.forward(abs(ax))
+            A2.forward((abs(ax)/(abs(ax1)))/100)
+            B2.backward(abs(ax))
+            B1.backward((abs(ax)/(abs(ax1)))/100)
         elif(ax<0 and ax1>0 and abs(ax1)>=0.01):
             print('f')
-            A2.forward(abs(ax*100))
-            A1.forward((abs(ax*100)/(abs(ax1)))/100)
-            B1.backward(abs(ax*100))
-            B2.backward((abs(ax*100)/(abs(ax1)))/100)
+            A2.forward(abs(ax))
+            A1.forward((abs(ax)/(abs(ax1)))/100)
+            B1.backward(abs(ax))
+            B2.backward((abs(ax)/(abs(ax1)))/100)
         elif(ax>0 and ax1<0 and abs(ax1)>=0.01):
             print('back')
-            A1.backward(abs(ax*100))
-            A2.backward((abs(ax*100)/(abs(ax1)))/100)
-            B2.forward(abs(ax*100))
-            B1.forward((abs(ax*100)/(abs(ax1)))/100)
+            A1.backward(abs(ax))
+            A2.backward((abs(ax)/(abs(ax1)))/100)
+            B2.forward(abs(ax))
+            B1.forward((abs(ax)/(abs(ax1)))/100)
         elif(ax>0 and ax1>0 and abs(ax1)>=0.01):
             print('back')
-            A2.backward(abs(ax*100))
-            A1.backward((abs(ax*100)/(abs(ax1)))/100)
-            B1.forward(abs(ax*100))
-            B2.forward((abs(ax*100)/(abs(ax1)))/100)
-            print((abs(ax*100)/(abs(ax1)))/100)
+            print((abs(ax)/(abs(ax1)))/100)
+            A2.backward(abs(ax))
+            A1.backward((abs(ax)/(abs(ax1)))/100)
+            B1.forward(abs(ax))
+            B2.forward((abs(ax)/(abs(ax1)))/100)
+            
             
         
         buttons = joystick.get_numbuttons()
@@ -223,3 +224,5 @@ while done==False:
 # If you forget this line, the program will 'hang'
 # on exit if running from IDLE.
 pygame.quit ()
+
+
